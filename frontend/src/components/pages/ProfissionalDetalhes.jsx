@@ -42,24 +42,38 @@ const ProfissionalDetalhes = () => {
 
   return (
     <>
-      <div>
-        <img src={profissional.fotoUrl} alt={profissional.nomeDoLugar} />
-        <h1>{profissional.nomeDoLugar}</h1>
-        <p>{profissional.descricao}</p>
+      <div className="flex bg-white">
+        <div className="">
+          <img
+            className="max-w-2xl"
+            src={profissional.fotoUrl}
+            alt={profissional.nomeDoLugar}
+          />
+        </div>
 
-        <h2>Horários Disponíveis:</h2>
-        {horarios.length > 0 ? (
-          <ul>
-            {horarios.map((horario) => (
-              <li key={horario._id}>
-                {horario.data} - Horários:{" "}
-                {horario.horariosDisponiveis.join(", ")}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Nenhum horário disponível no momento.</p>
-        )}
+        <div>
+          <div className="my-5">
+            <h1 className="text-2xl font-bold">{profissional.nomeDoLugar}</h1>
+            <p>{profissional.descricao}</p>
+          </div>
+
+          <div>
+            <h2 className="text-2xl">Horários Disponíveis:</h2>
+            {horarios.length > 0 ? (
+              <ul>
+                {horarios.map((horario) => (
+                  <li className="py-2 border-b-1"key={horario._id}>
+                    {horario.data} - Horários:{" "}
+                    {horario.horariosDisponiveis.join(", ")}
+                    <p>marcar</p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>Nenhum horário disponível no momento.</p>
+            )}
+          </div>
+        </div>
       </div>
     </>
   );

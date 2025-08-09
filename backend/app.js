@@ -1,5 +1,3 @@
-// backend/app.js
-
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -12,23 +10,20 @@ connectDB();
 
 const app = express();
 
+// Comente todas essas linhas
 app.use(express.json());
 app.use(cors());
 
-// Rota da sua API
-app.use('/api/profissionais', require('./src/routes/profissionais'));
+const profissionaisRouter = require('./src/routes/profissionais.js');
+app.use('/api/profissionais', profissionaisRouter);
 
-// Configuração para servir o frontend
-// -----------------------------------------------------------------
-// Define a pasta estática que irá servir os arquivos do frontend
+// Serve os arquivos estáticos do frontend (CSS, JS, etc.)
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
 
-// Para qualquer outra rota, redireciona para o arquivo index.html do frontend
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'index.html'));
+// Para qualquer outra rota que não seja da API, redirecione para o index.html
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'index.html'));
 });
-// -----------------------------------------------------------------
-
 const PORT = process.env.PORT || 10000;
 
 app.listen(PORT, () => {

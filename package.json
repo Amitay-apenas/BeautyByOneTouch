@@ -4,9 +4,9 @@
   "description": "Este projeto é uma aplicação web que visa conectar clientes a profissionais de beleza e bem-estar. A arquitetura é baseada em React no frontend, comunicando-se com uma API de backend para buscar e exibir os dados dos estabelecimentos.",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node app.js",
-    "build": "vite build",
-    "dev": "cd frontend && npm run dev"
+  "start": "cd frontend && npm install && npm run build && cd .. && node app.js",
+  "build": "cd frontend && npm run build",
+  "dev": "cd frontend && npm run dev"
   },
   "repository": {
     "type": "git",

@@ -13,6 +13,9 @@ const Home = () => {
         const response = await axios.get(
           "/api/profissionais"
         );
+
+        console.log(response);
+        
         setProfissionais(response.data.data);
       } catch (err) {
         setError("Não foi possível carregar os profissionais.");

@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Geist+Mono:wght@100..900&family=Koh+Santepheap:wght@100;300;400;700;900&family=Libre+Bodoni:ital,wght@0,400..700;1,400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@import "tailwindcss";
+
+@theme{
+    --font-Fleu: "Fleur De Leah", sans-serif;
+}
+
+body{
+    background-color: rgb(244, 124, 144);
+}

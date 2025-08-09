@@ -11,7 +11,7 @@ const Home = () => {
     const fetchProfissionais = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/profissionais"
+          "/api/profissionais"
         );
         setProfissionais(response.data.data);
       } catch (err) {

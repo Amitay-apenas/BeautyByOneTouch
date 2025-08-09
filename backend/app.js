@@ -18,12 +18,13 @@ const profissionaisRouter = require('./src/routes/profissionais.js');
 // 1. Defina as rotas da sua API primeiro
 app.use('/api/profissionais', profissionaisRouter);
 
+// ... (código anterior)
+
 // 2. Sirva os arquivos estáticos do frontend (CSS, JS, etc.)
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
 
-// 3. Defina a rota "catch-all" para servir o index.html
-// Use app.get para garantir que só seja ativado em requisições GET
-app.get('*', (req, res) => {
+// 3. Use a última rota app.use como fallback
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'index.html'));
 });
 

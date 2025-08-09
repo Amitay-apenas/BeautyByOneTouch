@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "Este projeto é uma aplicação web que visa conectar clientes a profissionais de beleza e bem-estar. A arquitetura é baseada em React no frontend, comunicando-se com uma API de backend para buscar e exibir os dados dos estabelecimentos.",
   "main": "index.js",
- "scripts": {
-  "build": "cd frontend && npm install && npm run build",
-  "start": "node ./backend/app.js",
-  "dev": "vite"
-},
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build && cd ../backend && npm install",
+    "start": "node ./backend/app.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Amitay-apenas/BeautyByOneTouch.git"
@@ -19,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Amitay-apenas/BeautyByOneTouch/issues"
   },
-  "homepage": "https://github.com/Amitay-apenas/BeautyByOneTouch#readme"
+  "homepage": "https://github.com/Amitay-apenas/BeautyByOneTouch#readme",
+  "dependencies": {
+    "express-validator": "^7.2.1"
+  }
 }

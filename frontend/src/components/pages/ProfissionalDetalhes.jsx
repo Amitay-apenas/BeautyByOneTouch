@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const ProfissionalDetalhes = () => {
   const { id } = useParams();
@@ -12,7 +12,9 @@ const ProfissionalDetalhes = () => {
   useEffect(() => {
     const fetchDetalhes = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/profissionais/${id}`);
+        const response = await axios.get(
+          `http://localhost:5000/api/profissionais/${id}`
+        );
         setProfissional(response.data.data.profissional);
         setHorarios(response.data.data.horarios);
       } catch (err) {
@@ -39,24 +41,27 @@ const ProfissionalDetalhes = () => {
   }
 
   return (
-    <div>
-      <img src={profissional.fotoUrl} alt={profissional.nomeDoLugar} />
-      <h1>{profissional.nomeDoLugar}</h1>
-      <p>{profissional.descricao}</p>
-      
-      <h2>Horários Disponíveis:</h2>
-      {horarios.length > 0 ? (
-        <ul>
-          {horarios.map(horario => (
-            <li key={horario._id}>
-              {horario.data} - Horários: {horario.horariosDisponiveis.join(', ')}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Nenhum horário disponível no momento.</p>
-      )}
-    </div>
+    <>
+      <div>
+        <img src={profissional.fotoUrl} alt={profissional.nomeDoLugar} />
+        <h1>{profissional.nomeDoLugar}</h1>
+        <p>{profissional.descricao}</p>
+
+        <h2>Horários Disponíveis:</h2>
+        {horarios.length > 0 ? (
+          <ul>
+            {horarios.map((horario) => (
+              <li key={horario._id}>
+                {horario.data} - Horários:{" "}
+                {horario.horariosDisponiveis.join(", ")}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Nenhum horário disponível no momento.</p>
+        )}
+      </div>
+    </>
   );
 };
 

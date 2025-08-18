@@ -18,8 +18,10 @@ app.use(cors());
 
 // Importa o roteador de profissionais
 const profissionaisRouter = require('./src/routes/profissionais.js');
+const horariosRouter = require('./src/routes/horarios.js');
 
 app.use('/api/profissionais', profissionaisRouter);
+app.use('/api/horarios', horariosRouter);
 
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
 

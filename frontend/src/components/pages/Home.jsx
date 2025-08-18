@@ -43,7 +43,7 @@ const Home = () => {
 
   return (
     <section className="grid grid-cols-4 gap-8">
-      {profissionais.map((profissional) => (
+      {profissionais && profissionais.map((profissional) => (
         <ObjSec key={profissional._id} profissional={profissional} />
       ))}
     </section>

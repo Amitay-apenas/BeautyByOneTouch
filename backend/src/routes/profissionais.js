@@ -1,11 +1,8 @@
-// backend/src/routes/profissionais.js
-
 const express = require('express');
 const router = express.Router();
 const Profissional = require('../models/Profissional');
 const { body, validationResult } = require('express-validator');
 
-// Defina a rota POST com um array de middlewares antes do handler da rota
 router.post(
   '/',
   [
@@ -39,5 +36,29 @@ router.post(
     }
   }
 );
+
+router.get('/', async (req, res) => {
+  try {
+    const profissionais = await Profissional.find();
+    res.json({ success: true, data: profissionais });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Erro ao buscar profissionais' });
+  }
+});
+
+router.get('/:id', async (req, res) => {
+  try {
+    const profissional = await Profissional.findById(req.params.id);
+
+    if (!profissional) {
+      return res.status(404).json({ success: false, message: 'Profissional não encontrado' });
+    }
+
+    res.json({ success: true, data: profissional });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Erro ao buscar profissional' });
+  }
+});
+
 
 module.exports = router;

@@ -13,7 +13,7 @@ const ProfissionalDetalhes = () => {
     const fetchDetalhes = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/profissionais/${id}`
+          `http://localhost:10000/api/profissionais/${id}`
         );
         setProfissional(response.data.data.profissional);
         setHorarios(response.data.data.horarios);

@@ -4,19 +4,15 @@ const cors = require('cors');
 const path = require('path');
 const connectDB = require('./src/config/db');
 
-// Carrega as variáveis de ambiente
 dotenv.config({ path: './backend/.env' });
 
-// Conecta ao banco de dados
 connectDB();
 
 const app = express();
 
-// Configura o middleware para processar JSON e CORS
 app.use(express.json());
 app.use(cors());
 
-// Importa o roteador de profissionais
 const profissionaisRouter = require('./src/routes/profissionais.js');
 const horariosRouter = require('./src/routes/horarios.js');
 

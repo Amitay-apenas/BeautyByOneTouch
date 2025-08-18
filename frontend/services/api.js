@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-// Use a variável de ambiente VITE_API_URL
 const API_URL = import.meta.env.VITE_API_URL;
 
-// Crie uma instância do axios com a URL base
 const apiClient = axios.create({
   baseURL: API_URL,
 });
@@ -18,4 +16,4 @@ export const getProfissionais = async () => {
   }
 };
 
-// ... (se houver outras funções de API, como postProfissionais, elas também devem usar apiClient)
+//NÃO ESQUEÇA DE USAR ESTE CÓDIGO PARA ADICIONAR OUTROS METODOS POST

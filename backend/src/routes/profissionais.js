@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getProfissionais, getProfissionalById } = require('../controller/profissionailController.js');
+const { getProfissionais, getProfissionalById } = require('../controller/profissionalController.js');
 
 // Rota GET para listar todos os profissionais
 router.get('/', getProfissionais);

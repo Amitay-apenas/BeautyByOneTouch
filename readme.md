@@ -1,88 +1,82 @@
 # BeautyByOneTouch
 
-Este projeto é uma plataforma web completa para agendamento de serviços de beleza e bem-estar. A aplicação conecta clientes a profissionais, permitindo que os usuários naveguem por uma lista de estabelecimentos, visualizem detalhes de cada profissional e agendem horários disponíveis.
-
-A arquitetura do projeto é baseada em uma aplicação de página única (SPA) construída com **React** no frontend e uma API RESTful em **Node.js** com **Express** no backend. O banco de dados utilizado é o **MongoDB**.
+Este é um projeto para conectar profissionais da área de beleza a seus clientes. A plataforma permite a listagem de estabelecimentos, a adição de novos negócios e o upload de fotos de forma segura e persistente.
 
 ## 🚀 Tecnologias Utilizadas
 
-**Frontend:**
+O projeto foi construído utilizando as seguintes tecnologias:
 
-  * **React:** Biblioteca JavaScript para a interface do usuário.
-  * **React Router DOM:** Para gerenciar a navegação entre as páginas.
-  * **Axios:** Cliente HTTP para fazer requisições à API.
-  * **Tailwind CSS:** Para estilização rápida e responsiva.
+* **Frontend**: React, Tailwind CSS
+* **Backend**: Node.js, Express.js
+* **Banco de Dados**: MongoDB (Mongoose)
+* **Hospedagem**: Render
+* **Armazenamento de Mídia**: Cloudinary
 
-**Backend:**
+## ✨ Principais Funcionalidades
 
-  * **Node.js & Express:** Ambiente de execução e framework para o servidor web.
-  * **Mongoose:** ODM (Object Data Modeling) para interagir com o MongoDB.
-  * **CORS:** Middleware para permitir requisições de diferentes origens.
-  * **dotenv:** Para carregar variáveis de ambiente.
+* **Listagem de Estabelecimentos**: Exibe uma lista de todos os estabelecimentos registrados na página inicial.
+* **Adição de Novo Estabelecimento**: Permite que usuários adicionem seus próprios negócios, incluindo nome, endereço e uma foto.
+* **Upload de Imagens Persistente**: Utiliza o **Cloudinary** para armazenar as fotos, garantindo que elas não sejam perdidas após cada `deploy` no servidor Render.
+* **URLs de Imagem Dinâmicas**: O frontend agora consome diretamente as URLs de imagem do Cloudinary, corrigindo o problema de carregamento de fotos antigas.
 
-**Banco de Dados:**
+## 💡 Melhorias Arquitetônicas
 
-  * **MongoDB:** Banco de dados NoSQL.
+O projeto foi refatorado para garantir maior estabilidade e escalabilidade, com foco em duas áreas principais:
 
-## 📁 Estrutura do Projeto
+* **Migração de Upload de Arquivos**: O sistema de upload foi migrado de armazenamento local no servidor (`multer.diskStorage`) para o **Cloudinary**. Isso resolveu o problema de arquivos não-persistentes em ambientes de produção como o Render.
+* **Segurança e Boas Práticas**: Todas as credenciais de API (Cloudinary, MongoDB) foram movidas para **variáveis de ambiente**, garantindo que informações sensíveis não sejam expostas no código.
 
-O projeto é dividido em duas partes principais: `frontend` (a interface do usuário) e `backend` (o servidor e a API).
+## 🛠️ Como Executar o Projeto Localmente
 
-### 🖥️ Frontend
+Siga os passos abaixo para rodar a aplicação no seu ambiente de desenvolvimento.
 
-A pasta `frontend` contém todo o código da aplicação React.
+### 1. Pré-requisitos
 
-  * **`src/App.jsx`**: O componente principal que configura o roteamento da aplicação. Ele define as rotas para a página inicial (`/`) e para a página de detalhes do profissional (`/profissional/:id`), garantindo que o cabeçalho seja exibido em todas as páginas.
-  * **`src/components/pages/Home.jsx`**: A página inicial. Ela faz uma requisição `GET` para a API, busca a lista de profissionais e renderiza um componente `ObjSec` para cada um deles. O componente gerencia os estados de carregamento e erro para uma melhor experiência do usuário.
-  * **`src/components/pages/ProfissionalDetalhes.jsx`**: A página de detalhes. Ela usa o `useParams` para obter o ID do profissional da URL e faz uma requisição `GET` para a API, buscando os dados específicos do profissional e seus horários disponíveis.
-  * **`src/components/Header.jsx`**: Um componente reutilizável que exibe o cabeçalho da aplicação.
-  * **`src/components/ObjSec.jsx`**: Um componente de cartão que exibe um resumo de cada profissional. Ele é um link que leva o usuário para a página de detalhes correspondente.
+* Node.js e npm instalados
+* Uma conta no MongoDB Atlas ou uma instância local
+* Uma conta no Cloudinary
 
-### ⚙️ Backend
+### 2. Configuração do Backend
 
-A pasta `backend` contém o código do servidor Node.js e da API.
-
-  * **`app.js`**: O ponto de entrada do servidor. Ele configura o Express, a conexão com o MongoDB, o CORS e define as rotas principais da API (`/api/profissionais` e `/api/horarios`). Ele também serve os arquivos estáticos do frontend, permitindo que a aplicação seja executada em um único serviço.
-  * **`src/config/db.js`**: Contém a lógica de conexão com o banco de dados MongoDB.
-  * **`src/models/Profissional.js`**: Define o esquema (estrutura de dados) para os profissionais no MongoDB.
-  * **`src/models/Horario.js`**: Define o esquema para os horários de agendamento.
-  * **`src/routes/profissionais.js`**: Define as rotas para a API de profissionais, chamando as funções do controlador para lidar com as requisições `GET`.
-  * **`src/routes/horarios.js`**: Define a rota `POST` para agendar horários, chamando o controlador correspondente.
-  * **`src/controller/profissionailController.js`**: Contém a lógica de negócio para buscar profissionais e seus horários do banco de dados.
-  * **`src/controller/horarioController.js`**: Contém a lógica de negócio para agendar um horário.
-
-## 🛠️ Instalação e Execução
-
-Para rodar o projeto localmente, siga os passos abaixo:
-
-1.  **Clone o repositório:**
-
+1.  Clone este repositório:
     ```bash
-    git clone https://github.com/Amitay-apenas/AmiBnB.git
-    cd AmiBnB
+    git clone [https://github.com/Amitay-apenas/BeautyByOneTouch.git](https://github.com/Amitay-apenas/BeautyByOneTouch.git)
+    cd BeautyByOneTouch/backend
+    ```
+2.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+3.  Crie um arquivo `.env` na pasta `backend` e adicione suas variáveis de ambiente:
+    ```env
+    MONGODB_URL="sua_url_de_conexao_mongodb"
+    CLOUDINARY_CLOUD_NAME="seu_cloud_name_do_cloudinary"
+    CLOUDINARY_API_KEY="sua_api_key_do_cloudinary"
+    CLOUDINARY_API_SECRET="seu_api_secret_do_cloudinary"
+    ```
+4.  Inicie o servidor:
+    ```bash
+    npm start
     ```
 
-2.  **Configure o Backend:**
+### 3. Configuração do Frontend
 
-      * Navegue até a pasta `backend`.
-      * Instale as dependências: `npm install`.
-      * Crie um arquivo `.env` com a sua string de conexão do MongoDB: `MONGO_URI="sua_string_de_conexao"`.
-      * Inicie o servidor: `npm run dev` (se você tiver o nodemon) ou `node app.js`.
+1.  Navegue para a pasta `frontend` do projeto:
+    ```bash
+    cd ../frontend
+    ```
+2.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+3.  Inicie a aplicação React:
+    ```bash
+    npm start
+    ```
 
-3.  **Configure o Frontend:**
+A aplicação estará disponível em `http://localhost:3000`.
 
-      * Abra um novo terminal e navegue até a pasta `frontend`.
-      * Instale as dependências: `npm install`.
-      * Inicie o servidor de desenvolvimento: `npm run dev`.
+## 🤝 Contato
 
-O projeto estará disponível em `http://localhost:3000`.
-
------
-
-### Versão Atual vs. Versão Anterior (Detalhes Técnicos)
-
-  * **Comunicação API:** A versão anterior do projeto continha URLs fixas como `http://localhost:5000` no frontend, o que causava erros `ERR_CONNECTION_REFUSED` em produção. Na versão atual, as requisições `axios` foram corrigidas para usar URLs relativas (`/api/...`), garantindo que o projeto funcione tanto localmente quanto em ambientes de deploy como o Render.
-
-  * **Estrutura do Backend:** A arquitetura do backend foi refatorada para seguir o padrão **MVC (Model-View-Controller)**. Anteriormente, a lógica de negócio estava misturada com as rotas. Agora, as rotas (`profissionais.js`) apenas chamam funções separadas nos controladores (`profissionailController.js`), tornando o código mais limpo, modular e fácil de manter.
-
-  * **Lógica de Rotas:** As rotas `GET` para buscar profissionais foram implementadas e corrigidas no arquivo de rotas, resolvendo o `TypeError: Cannot read properties of undefined (reading 'map')` que ocorria na página inicial. Além disso, a rota de agendamento foi separada em seu próprio arquivo.
+Em caso de dúvidas, sinta-se à vontade para entrar em contato.
+````

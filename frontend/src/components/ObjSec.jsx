@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ObjSec from "../ObjSec"; // Importe o componente ObjSec
 
 function Home() {
   const [estabelecimentos, setEstabelecimentos] = useState([]);

@@ -45,6 +45,7 @@ function Home() {
               _id: estabelecimento._id,
               nomeDoLugar: estabelecimento.nome,
               descricao: estabelecimento.endereco,
+              numeroZap: estabelecimento.numero,
               fotoUrl: estabelecimento.foto,
             }}
           />

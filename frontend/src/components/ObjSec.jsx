@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Se você estiver usando react-router-dom
+import { Link } from "react-router-dom";
 
 const ObjSec = ({ profissional }) => {
   if (!profissional) {

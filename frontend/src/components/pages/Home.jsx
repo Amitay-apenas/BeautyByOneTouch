@@ -1,53 +1,56 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import ObjSec from "../ObjSec";
 
-const Home = () => {
-  const [profissionais, setProfissionais] = useState([]);
+function Home() {
+  const [estabelecimentos, setEstabelecimentos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchProfissionais = async () => {
+    const fetchEstabelecimentos = async () => {
       try {
-        const response = await axios.get(
-          "/api/profissionais"
-        );
-
-        console.log(response);
-        
-        setProfissionais(response.data.data);
+        const response = await fetch("https://beautybyonetouch.onrender.com/api/estabelecimentos");
+        if (!response.ok) {
+          throw new Error('Falha ao buscar estabelecimentos');
+        }
+        const data = await response.json();
+        setEstabelecimentos(data);
+        setError(null);
       } catch (err) {
-        setError("Não foi possível carregar os profissionais.");
-        console.error(err);
+        console.error("Erro ao buscar dados:", err);
+        setError("Não foi possível carregar os estabelecimentos. Tente novamente mais tarde.");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchProfissionais();
+    fetchEstabelecimentos();
   }, []);
+
   if (loading) {
-    return (
-      <section className="text-center mt-20 text-white">Carregando...</section>
-    );
+    return <div>Carregando...</div>;
   }
 
   if (error) {
-    return (
-      <section className="text-center mt-20 text-red-500">
-        Erro: {error}
-      </section>
-    );
+    return <div>{error}</div>;
   }
 
   return (
-    <section className="mx-auto grid max-w-7xl grid-cols-[repeat(auto-fit,minmax(225px,1fr))] gap-8 px-8 py-4">
-      {profissionais && profissionais.map((profissional) => (
-        <ObjSec key={profissional._id} profissional={profissional} />
-      ))}
-    </section>
+    <div className="home-page-container">
+      {estabelecimentos.length > 0 ? (
+        estabelecimentos.map(estabelecimento => (
+          <ObjSec 
+            key={estabelecimento._id} 
+            nome={estabelecimento.nome} 
+            endereco={estabelecimento.endereco} 
+            foto={estabelecimento.foto} 
+          />
+        ))
+      ) : (
+        <div>Nenhum estabelecimento encontrado.</div>
+      )}
+    </div>
   );
-};
+}
 
 export default Home;

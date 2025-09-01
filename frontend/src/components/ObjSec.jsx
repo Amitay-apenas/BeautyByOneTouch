@@ -1,20 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ObjSec = ({ profissional }) => {
-  if (!profissional) {
+const ObjSec = ({ estabelecimento }) => {
+  if (!estabelecimento) {
     return null;
   }
   return (
-    <Link to={`/profissional/${profissional._id}`} className="max-w-full">
+    <Link to={`/estabelecimento/${estabelecimento._id}`} className="max-w-full">
       <div className="bg-white rounded-md px-2 py-2 max-w-2xs">
-        <img src={profissional.fotoUrl} alt={profissional.nomeDoLugar} className="rounded-md" />
+        <img src={estabelecimento.fotoUrl} alt={estabelecimento.nomeDoLugar} className="rounded-md" />
         <div>
-          <p>{profissional.nomeDoLugar}</p>
+          <p>{estabelecimento.nomeDoLugar}</p>
         </div>
         <div>
           <p className="truncate">
-            {profissional.descricao}
+            {estabelecimento.descricao}
+          </p>
+        </div>
+        <div>
+          <p>
+            
           </p>
         </div>
       </div>

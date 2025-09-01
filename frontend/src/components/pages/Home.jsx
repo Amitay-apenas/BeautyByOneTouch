@@ -41,9 +41,12 @@ function Home() {
         estabelecimentos.map(estabelecimento => (
           <ObjSec 
             key={estabelecimento._id} 
-            nome={estabelecimento.nome} 
-            endereco={estabelecimento.endereco} 
-            foto={estabelecimento.foto} 
+            profissional={{
+              _id: estabelecimento._id,
+              nomeDoLugar: estabelecimento.nome,
+              descricao: estabelecimento.endereco,
+              fotoUrl: `https://beautybyonetouch.onrender.com/uploads/${estabelecimento.foto.split('/').pop()}`,
+            }}
           />
         ))
       ) : (

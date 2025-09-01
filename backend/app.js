@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const path = require('path');
 const connectDB = require('./src/config/db');
+const estabelecimentosRouter = require('./src/routes/estabelecimentos.js');
 
 dotenv.config({ path: './backend/.env' });
 
@@ -18,6 +19,10 @@ const horariosRouter = require('./src/routes/horarios.js');
 
 app.use('/api/profissionais', profissionaisRouter);
 app.use('/api/horarios', horariosRouter);
+
+app.use('/api/estabelecimentos', estabelecimentosRouter);
+
+app.use('/uploads', express.static('backend/uploads'));
 
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
 

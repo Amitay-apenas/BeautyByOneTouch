@@ -2,6 +2,7 @@ import Home from './components/pages/Home';
 import Header from './components/Header';
 import ProfissionalDetalhes from './components/pages/ProfissionalDetalhes';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Adicionar from './components/pages/Adicionar';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/profissional/:id' element={<ProfissionalDetalhes />} />
+          <Route path='/adicionar' element={<Adicionar/>}/>
         </Routes>
       </BrowserRouter>
     </>

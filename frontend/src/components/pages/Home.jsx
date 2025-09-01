@@ -11,7 +11,7 @@ function Home() {
       try {
         const response = await fetch("/api/estabelecimentos");
         if (!response.ok) {
-          throw new Error('Falha ao buscar estabelecimentos');
+          throw new Error("Falha ao buscar estabelecimentos");
         }
         const data = await response.json();
         setEstabelecimentos(data);
@@ -38,14 +38,14 @@ function Home() {
   return (
     <div className="home-page-container">
       {estabelecimentos.length > 0 ? (
-        estabelecimentos.map(estabelecimento => (
+        estabelecimentos.map((estabelecimento) => (
           <ObjSec 
-            key={estabelecimento._id} 
+            key={estabelecimento._id}
             profissional={{
               _id: estabelecimento._id,
               nomeDoLugar: estabelecimento.nome,
               descricao: estabelecimento.endereco,
-              fotoUrl: `https://beautybyonetouch.onrender.com/uploads/${estabelecimento.foto.split('/').pop()}`,
+              fotoUrl: estabelecimento.foto,
             }}
           />
         ))

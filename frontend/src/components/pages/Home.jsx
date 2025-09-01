@@ -36,7 +36,7 @@ function Home() {
   }
 
   return (
-    <div className="mx-auto grid max-w-7xl grid-cols-[repeat(auto-fit,minmax(225px,1fr))] gap-8 px-8 py-4">
+    <div className="home-page-container mx-auto grid max-w-3xl grid-cols-[repeat(auto-fit,minmax(225px,1fr))] gap-8 px-8 py-4">
       {estabelecimentos.length > 0 ? (
         estabelecimentos.map((estabelecimento) => (
           <ObjSec 

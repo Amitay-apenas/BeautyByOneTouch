@@ -19,7 +19,7 @@ const ObjSec = ({ estabelecimento }) => {
         </div>
         <div>
           <p>
-            
+            {estabelecimento.numero}
           </p>
         </div>
       </div>

@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Adicionar() {
   const [selectedImg, setSelectedImg] = useState(null);
   const [nome, setNome] = useState(null);
   const [endereco, setEndereco] = useState(null);
+  const navigate = useNavigate(); 
 
   const handleSubmit = async () => {
     const formData = new FormData();
@@ -22,9 +24,13 @@ function Adicionar() {
           body: formData,
         }
       );
-
-      const data = await response.json();
-      console.log("Dados enviados com sucesso!", data);
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Dados enviados com sucesso!", data);
+        navigate("/");
+      } else {
+        throw new Error("Falha no envio do formulário");
+      }
     } catch (error) {
       console.error("Erro ao enviar dados:", error);
     }

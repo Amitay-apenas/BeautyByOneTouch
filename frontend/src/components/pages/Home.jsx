@@ -41,7 +41,7 @@ function Home() {
         estabelecimentos.map((estabelecimento) => (
           <ObjSec 
             key={estabelecimento._id}
-            profissional={{
+            estabelecimento={{
               _id: estabelecimento._id,
               nomeDoLugar: estabelecimento.nome,
               descricao: estabelecimento.endereco,

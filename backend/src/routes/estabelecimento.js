@@ -26,13 +26,14 @@ const upload = multer({ storage: storage });
 
 router.post('/', upload.single('foto'), async (req, res) => {
   try {
-    const { nome, endereco } = req.body;
+    const { nome, endereco, numero } = req.body;
     
     const foto = req.file ? req.file.path : null;
 
     const novoEstabelecimento = new Estabelecimento({
       nome,
       endereco,
+      numero,
       foto,
     });
 

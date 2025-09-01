@@ -6,12 +6,14 @@ function Adicionar() {
   const [selectedImg, setSelectedImg] = useState(null);
   const [nome, setNome] = useState(null);
   const [endereco, setEndereco] = useState(null);
+  const [numero, setNumero] = useState(null);
   const navigate = useNavigate(); 
 
   const handleSubmit = async () => {
     const formData = new FormData();
     formData.append("nome", nome);
     formData.append("endereco", endereco);
+    formData.append("numero", numero);
     if (selectedImg) {
       formData.append("foto", selectedImg);
     }
@@ -54,6 +56,12 @@ function Adicionar() {
           placeholder="Endereço"
           onChange={(e) => setEndereco(e.target.value)}
         />
+          <input 
+          className="border-b-2 border-b-pink-300 w-full my-2 focus:outline-none"
+          type="text"
+          placeholder="numero do whatsapp"
+          onChange={(e) => setNumero(e.target.value)} 
+          />
         <input
           className="border-2 rounded-full border-pink-300 p-2 my-2 focus:outline-none hover:bg-pink-300 hover:text-white hover:-translate-y-1 cursor-pointer transition delay-150 duration-300 ease-in-out"
           type="file"

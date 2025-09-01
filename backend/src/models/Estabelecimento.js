@@ -11,6 +11,11 @@ const estabelecimentoSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  numero: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   foto: {
     type: String,
     required: false,

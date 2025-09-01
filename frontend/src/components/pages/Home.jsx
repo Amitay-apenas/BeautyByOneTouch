@@ -42,7 +42,7 @@ const Home = () => {
   }
 
   return (
-    <section className="grid grid-cols-4 gap-8">
+    <section className="mx-auto grid max-w-7xl grid-cols-[repeat(auto-fit,minmax(225px,1fr))] gap-8 px-8 py-4">
       {profissionais && profissionais.map((profissional) => (
         <ObjSec key={profissional._id} profissional={profissional} />
       ))}

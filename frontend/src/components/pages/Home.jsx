@@ -9,7 +9,7 @@ function Home() {
   useEffect(() => {
     const fetchEstabelecimentos = async () => {
       try {
-        const response = await fetch("https://beautybyonetouch.onrender.com/api/estabelecimentos");
+        const response = await fetch("/api/estabelecimentos");
         if (!response.ok) {
           throw new Error('Falha ao buscar estabelecimentos');
         }

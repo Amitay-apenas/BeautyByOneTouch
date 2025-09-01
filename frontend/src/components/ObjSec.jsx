@@ -8,13 +8,13 @@ const ObjSec = ({ estabelecimento }) => {
   return (
     <Link to={`/estabelecimento/${estabelecimento._id}`} className="max-w-full">
       <div className="bg-white rounded-md px-2 py-2 max-w-2xs">
-        <img src={estabelecimento.fotoUrl} alt={estabelecimento.nomeDoLugar} className="rounded-md" />
+        <img src={estabelecimento.fotoUrl} alt={estabelecimento.nome} className="rounded-md" />
         <div>
-          <p>{estabelecimento.nomeDoLugar}</p>
+          <p>{estabelecimento.nome}</p>
         </div>
         <div>
           <p className="truncate">
-            {estabelecimento.descricao}
+            {estabelecimento.endereco}
           </p>
         </div>
         <div>

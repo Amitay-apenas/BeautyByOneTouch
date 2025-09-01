@@ -7,7 +7,7 @@ const ObjSec = ({ profissional }) => {
   }
   return (
     <Link to={`/profissional/${profissional._id}`} className="max-w-full">
-      <div className="bg-white rounded-md px-2 py-2 max-w-2xl">
+      <div className="bg-white rounded-md px-2 py-2 max-w-2xs">
         <img src={profissional.fotoUrl} alt={profissional.nomeDoLugar} className="rounded-md" />
         <div>
           <p>{profissional.nomeDoLugar}</p>

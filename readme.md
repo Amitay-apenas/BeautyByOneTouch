@@ -90,13 +90,12 @@ Para rodar o projeto localmente, siga os passos abaixo. Lembre-se de que a API a
 
 O projeto estará disponível em `http://localhost:3000`.
 
-## 🆕 Atualizações e Melhorias Adicionadas
+-----
 
-Esta versão do projeto inclui melhorias significativas, especialmente na área de gerenciamento de dados e na arquitetura do backend.
+### Versão Atual vs. Versão Anterior (Detalhes Técnicos)
 
-  * **Funcionalidade de Adicionar Estabelecimento**: Implementamos um formulário completo que permite aos usuários inserir o nome, endereço e fazer o upload de uma foto do estabelecimento, enviando tudo para o servidor.
-  * **Manipulação de Arquivos**: O backend agora usa a biblioteca **Multer** para processar o upload de imagens, salvando-as em uma pasta dedicada (`backend/uploads`) e armazenando o caminho da imagem no banco de dados.
-  * **Estrutura de Rotas Modulada**: Criamos um novo roteador (`estabelecimentos.js`) para gerenciar as rotas relacionadas aos estabelecimentos. Isso mantém o código organizado e escalável.
-  * **Correção de Dependência no Deploy**: O erro `Cannot find module 'multer'` que ocorria no Render foi resolvido garantindo que o `multer` fosse adicionado como uma dependência no arquivo `package.json`, assegurando sua instalação correta durante o processo de deploy.
-  * **Melhoria na Conexão do Banco de Dados**: A string de conexão do MongoDB foi movida para uma variável de ambiente (`MONGODB_URI`), uma prática de segurança essencial para o deploy em ambientes como o Render.
-  * **Conexão do Formulário React**: Os inputs no componente `Adicionar.jsx` agora são "controlados" pelo estado, garantindo que os dados inseridos pelo usuário sejam corretamente capturados antes do envio.
+  * **Comunicação API:** A versão anterior do projeto continha URLs fixas como `http://localhost:5000` no frontend, o que causava erros `ERR_CONNECTION_REFUSED` em produção. Na versão atual, as requisições `axios` foram corrigidas para usar URLs relativas (`/api/...`), garantindo que o projeto funcione tanto localmente quanto em ambientes de deploy como o Render.
+
+  * **Estrutura do Backend:** A arquitetura do backend foi refatorada para seguir o padrão **MVC (Model-View-Controller)**. Anteriormente, a lógica de negócio estava misturada com as rotas. Agora, as rotas (`profissionais.js`) apenas chamam funções separadas nos controladores (`profissionailController.js`), tornando o código mais limpo, modular e fácil de manter.
+
+  * **Lógica de Rotas:** As rotas `GET` para buscar profissionais foram implementadas e corrigidas no arquivo de rotas, resolvendo o `TypeError: Cannot read properties of undefined (reading 'map')` que ocorria na página inicial. Além disso, a rota de agendamento foi separada em seu próprio arquivo.

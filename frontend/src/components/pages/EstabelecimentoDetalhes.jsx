@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const ProfissionalDetalhes = () => {
+const EstabelecimentoDetalhes = () => {
   const { id } = useParams();
   const [profissional, setProfissional] = useState(null);
   const [horarios, setHorarios] = useState([]);
@@ -13,7 +13,7 @@ const ProfissionalDetalhes = () => {
     const fetchDetalhes = async () => {
       try {
         const response = await axios.get(
-          `/api/profissionais/${id}`
+          `/api/estabelecimento/${id}`
         );
         setProfissional(response.data.data.profissional);
         setHorarios(response.data.data.horarios);
@@ -79,4 +79,4 @@ const ProfissionalDetalhes = () => {
   );
 };
 
-export default ProfissionalDetalhes;
+export default EstabelecimentoDetalhes;

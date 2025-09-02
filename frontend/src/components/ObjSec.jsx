@@ -5,8 +5,12 @@ const ObjSec = ({ estabelecimento }) => {
   if (!estabelecimento) {
     return null;
   }
+
+  const estabNumero = estabelecimento.numero
+  const numeroLimpo = estabNumero.replaceAll(' ', '').replaceAll('-', '')
+
   return (
-    <Link to={`/estabelecimento/${estabelecimento._id}`} className="max-w-full">
+    <a href={`https://wa.me/${numeroLimpo}`} className="max-w-full">
       <div className="bg-white rounded-md px-2 py-2 max-w-2xs">
         <img src={estabelecimento.foto} alt={estabelecimento.nome} className="rounded-md" />
         <div>
@@ -23,7 +27,7 @@ const ObjSec = ({ estabelecimento }) => {
           </p>
         </div>
       </div>
-    </Link>
+    </a>
   );
 };
 

@@ -7,7 +7,7 @@ const ObjSec = ({ estabelecimento }) => {
   }
 
   const estabNumero = estabelecimento.numero
-  const numeroLimpo = estabNumero.replaceAll(' ', '').replaceAll('-', '')
+  const numeroLimpo = estabNumero.replaceAll(' ', '').replaceAll('-', '').replaceAll('+', '')
 
   return (
     <a href={`https://wa.me/${numeroLimpo}`} className="max-w-full">
